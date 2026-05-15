@@ -6,8 +6,8 @@ import PasswordStrengthMeter from './PasswordStrengthMeter'
 describe('PasswordStrengthMeter', () => {
   it('renders password input', () => {
     render(<PasswordStrengthMeter />)
-
-    expect(screen.getByRole('textbox')).toBeInTheDocument()
+    const input = screen.getByLabelText(/password/i)
+    expect(screen.getByLabelText(/password/i)).toBeInTheDocument()
   })
 
   it('shows vacía initially', () => {
@@ -17,12 +17,12 @@ describe('PasswordStrengthMeter', () => {
   })
 
   it('shows fuerte when typing password with number', async () => {
-    render(<PasswordStrengthMeter />)
+  render(<PasswordStrengthMeter />)
 
-    const input = screen.getByRole('textbox')
+  const input = screen.getByLabelText(/password/i)
 
-    await userEvent.type(input, 'abcdefgh1')
+  await userEvent.type(input, 'abcdefgh1')
 
-    expect(screen.getByText('fuerte')).toBeInTheDocument()
-  })
+  expect(screen.getByText('fuerte')).toBeInTheDocument()
+})
 })
