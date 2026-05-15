@@ -21,4 +21,16 @@ describe('getPasswordStrength', () => {
   it('returns muy fuerte for password with number and symbol', () => {
     expect(getPasswordStrength('abcdefgh1!')).toBe('muy fuerte')
   })
+
+  it('exactly 8 characters without numbers is media', () => {
+    expect(getPasswordStrength('abcdefgh')).toBe('media')
+  })
+  
+  it('7 characters is still débil', () => {
+    expect(getPasswordStrength('abcdefg')).toBe('débil') 
+  })
+  
+  it('symbols only and less than 8 chars is débil', () => {
+    expect(getPasswordStrength('!!!')).toBe('débil')
+    })
 })
